@@ -1,0 +1,5 @@
+reorder_imports = true
+reorder_modules = true
+
+chain_width = 80
+hard_tabs = true

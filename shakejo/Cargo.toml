@@ -1,0 +1,13 @@
+lib.path = "main.rs"
+
+[package]
+name = "shakejo"
+description = """
+shakejo
+"""
+version = "0.0.0"
+
+license = "Apache-2.0"
+edition = "2021"
+
+[dependencies]
