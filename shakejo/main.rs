@@ -1,6 +1,7 @@
 #![no_std]
 
 mod models;
+pub use models::{Error, Result};
 
 mod shake;
 pub use shake::*;
