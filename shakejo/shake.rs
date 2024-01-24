@@ -6,8 +6,8 @@ use crate::{models as inner, Error, Result, Transport};
 
 pub const NOISE: &str = "Noise_IK_25519_ChaChaPoly_BLAKE2s";
 
-pub const MESSAGE_A_LEN: usize = 32 + 32 + 16 + 16;
-pub const MESSAGE_B_LEN: usize = 32 + 16;
+pub(crate) const MESSAGE_A_LEN: usize = 32 + 32 + 16 + 16;
+pub(crate) const MESSAGE_B_LEN: usize = 32 + 16;
 
 pub struct State(PublicKey, PublicKey);
 

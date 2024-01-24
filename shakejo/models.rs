@@ -4,6 +4,7 @@ use blake2::{
 };
 pub type Result<T> = core::result::Result<T, Error>;
 
+#[derive(Debug)]
 pub enum Error {
 	ChaCha20Poly1305,
 	ExhaustedCounter,
