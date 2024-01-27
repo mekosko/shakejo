@@ -1,1 +1,1 @@
-workspace.members = ["shakejo"]
+workspace = { members = ["shakejo"], resolver = "2" }

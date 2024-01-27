@@ -20,3 +20,6 @@ blake2 = { version = "0.10", default-features = false }
 x25519-dalek = { version = "2", features = [
     "static_secrets",
 ], default-features = false }
+
+[dev-dependencies]
+snow = "0.9"
