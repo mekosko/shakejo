@@ -5,7 +5,7 @@ name = "shakejo"
 description = """
 shakejo
 """
-version = "0.0.0"
+version = "0.0.1"
 
 license = "Apache-2.0"
 edition = "2021"
