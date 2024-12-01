@@ -14,7 +14,7 @@ pub struct FakeRandomNumberGenerator(pub u8);
 
 impl rand_core::RngCore for FakeRandomNumberGenerator {
 	fn next_u32(&mut self) -> u32 {
-		// Generate and return pseudo random number
+		// Generate and return pseudo random number.
 
 		self.0 = self.0.checked_add(1).unwrap();
 
@@ -22,13 +22,13 @@ impl rand_core::RngCore for FakeRandomNumberGenerator {
 	}
 
 	fn next_u64(&mut self) -> u64 {
-		// Just generate and return u32 number
+		// Just generate and return u32 number.
 
 		self.next_u32() as u64
 	}
 
 	fn fill_bytes(&mut self, dest: &mut [u8]) {
-		// Fill provided array with pseudo random
+		// Fill provided array with pseudo random.
 
 		let f = |b: &mut u8| {
 			self.0 = self.0.checked_add(1).unwrap();
@@ -39,7 +39,7 @@ impl rand_core::RngCore for FakeRandomNumberGenerator {
 	}
 
 	fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), rand_core::Error> {
-		// Just call already provided method
+		// Just call already provided method.
 
 		self.fill_bytes(dest);
 

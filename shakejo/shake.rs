@@ -61,12 +61,12 @@ where
 	fn mix_key(&mut self, data: &[u8]) -> Result<()> {
 		let ck = self.ck.data.as_slice();
 
-		// SPEC: `with the chaining_key as HKDF salt`
+		// SPEC: `with the chaining_key as HKDF salt`.
 		let hkdf = hkdf::SimpleHkdf::<blake2::Blake2s256>::new(Some(ck), data);
 
 		let mut data = [0u8; 64];
 
-		// Length of data equals 64 so always okay
+		// Length of data equals 64 so always okay.
 		hkdf.expand(&[], data.as_mut_slice()).unwrap();
 
 		self.ck.data.as_mut_slice().copy_from_slice(&data[..32]);
@@ -86,12 +86,12 @@ where
 	}
 
 	pub fn decrypt(&mut self, m: &mut [u8]) -> Result<()> {
-		// We need to hash ciphertext, but we also need previous hash
+		// We need to hash ciphertext, but we also need previous hash.
 		let previous_hash = self.hash.clone();
 
 		self.hash.update(&m);
 
-		// Buffer with ciphertext for plaintext
+		// Buffer with ciphertext for plaintext.
 		let (data, tag_data) = m.split_at_mut(m.len() - 16);
 
 		let tag = chacha20poly1305::Tag::from_slice(tag_data);
@@ -106,7 +106,7 @@ where
 	}
 
 	pub fn encrypt(&mut self, m: &mut [u8]) -> Result<()> {
-		// Buffer with plaintext for ciphertext
+		// Buffer with plaintext for ciphertext.
 		let (data, tag_data) = m.split_at_mut(m.len() - 16);
 
 		let tag = ChaCha20Poly1305::new(&self.k)
@@ -115,7 +115,7 @@ where
 
 		tag_data.copy_from_slice(tag.as_slice());
 
-		// We need to hash ciphertext
+		// We need to hash ciphertext.
 		self.hash.update(m);
 
 		self.n = self.n.checked_add(1).ok_or(Error::ExhaustedCounter)?;
@@ -126,12 +126,12 @@ where
 	pub fn transport(self) -> Result<(chacha20poly1305::Key, chacha20poly1305::Key)> {
 		let ck = self.ck.data.as_slice();
 
-		// SPEC: `with the chaining_key as HKDF salt`
+		// SPEC: `with the chaining_key as HKDF salt`.
 		let hkdf = hkdf::SimpleHkdf::<blake2::Blake2s256>::new(Some(ck), &[]);
 
 		let mut data = [0u8; 64];
 
-		// Length of data equals 64 so always okay
+		// Length of data equals 64 so always okay.
 		hkdf.expand(&[], data.as_mut_slice()).unwrap();
 
 		Ok((
