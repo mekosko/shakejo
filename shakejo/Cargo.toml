@@ -3,9 +3,9 @@ lib.path = "main.rs"
 [package]
 name = "shakejo"
 description = """
-shakejo
+Noise_IK_25519_ChaChaPoly_BLAKE2s
 """
-version = "0.0.1"
+version = "0.0.2"
 
 license = "Apache-2.0"
 edition = "2021"
